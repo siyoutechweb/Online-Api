@@ -1,0 +1,143 @@
+{% extends "main.html" %}
+{% load crispy_forms_tags %}
+{% block title %}
+  Checkout
+{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+<style>
+a.button, input[type="submit"] {
+    color:#fff;
+    background:crimson;
+    border-radius:4px;
+    padding:10px 20px;
+    font-size:14px;
+    border:0;
+}
+
+a.button.light {
+    color:#666;
+    background:#ededed;
+}
+form p label, form p input {
+    float:left;
+    clear:both;
+}
+
+form p label {
+    font-size:14px;
+    padding-bottom:4px;
+}
+
+form p input {
+    width:350px;
+    font-size:13px;
+    margin-bottom:10px;
+    padding:12px 12px;
+    border:1;
+    background:#efefef;
+    color:#666;
+    border-radius:5px;
+}
+.order-form {
+
+}
+
+.order-info {
+    float:left;
+    width:100%;
+    background:#efefef;
+    padding:10px 20px;
+    color:#333;
+    border-bottom:4px solid #5993bb;
+}
+
+.order-info h3 {
+    color:#5993bb;
+}
+
+.order-info ul li {
+    margin:0;
+    padding:0;
+    font-size:14px;
+}
+
+.order-info p {
+    font-weight:bold;
+    float:right;
+}
+
+.order-info span {
+    float:right;
+}
+
+</style>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+          <div class="order-info">
+            <h3>Your order</h3>
+            <ul>
+              {% for item in cart %}
+                <li>
+                  {{ item.quantity }}x {{ item.product.name }}
+                  <span>${{ item.total_price }}</span>
+                </li>
+              {% endfor %}
+            </ul>
+            <p>Total: ${{ cart.get_total_price }}</p>
+          </div>
+          <br>
+          <form method="post" class="order-form">
+            <br>
+            <hr>
+            <h5>
+      <i class="fa fa-truck"></i>
+      Shipping Details
+    </h5>
+             <div class="form-group">
+            <input name="profile" required id="id_profile" value="{{request.user.profile.id}}" hidden>
+            <input name="first_name" required  value="{{request.user.first_name}}" hidden>
+            <input name="last_name" required  value="{{request.user.last_name}}" hidden>
+            <input name="email" required value="{{request.user.email}}" hidden>
+            <p>Address</p>
+            <input class="form-control" name="address" required  value="{{request.user.profile.address}}"><br>
+            <p>Country</p>
+            <input class="form-control" name="country" required  value="{{request.user.profile.country}}"><br>
+            <p>City</p>
+            <input class="form-control" name="city" required  value="{{request.user.profile.city}}"><br>
+            <p>Street</p>
+            <input class="form-control" name="street" required  value="{{request.user.profile.street}}"><br>
+            <p>Zip Code</p>
+            <input class="form-control" name="zip_code" required i value="{{request.user.profile.zip_code}}"><br>
+            <p>Phone</p>
+            <input class="form-control" name="phone" required  value="{{request.user.profile.phone}}"><br>
+
+
+            {% csrf_token %}
+
+            <a><input type="submit" value="Confirm Order"></a>
+            </div>
+          </form>
+            </div>
+        <div class="col-sm-3"></div>
+  </div>
+</div>
+
+
+
+
+
+
+</body>
+</html>
+{% endblock %}

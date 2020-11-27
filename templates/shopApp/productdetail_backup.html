@@ -1,0 +1,34 @@
+
+      <div class="cards">
+              <div class="card">
+               <!-- <img class="card-img-top" src="{% if product.image1 %}{{ product.image1.url }}{% else %}{% static "images/no_image.png" %}{% endif %}" alt="Card image cap" width="600" height="500"> -->
+               <div class="card-body">
+                 <h5 class="card-title">{{ product.name }}</h5>
+                 <p class="card-text">{{ product.description|linebreaks }} </p>
+               </div>
+               <ul class="list-group list-group-flush">
+                 <li class="list-group-item">Price: € {{ product.price }}</li>
+                 <li class="list-group-item">Discount: € {{ product.discount_amount }}</li>
+               </ul>
+               <div class="card-body">
+
+               <a href="{{ product.get_absolute_url }}" class="btn btn-danger">Add to Cart</a>
+               </div>
+             </div>
+
+             <div class="card">
+              <img class="card-img-top" src="{% if product.image2 %}{{ product.image2.url }}{% else %}{% static "images/no_image.png" %}{% endif %}" alt="Card image cap" width="600" height="500">
+              <div class="card-body">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <p class="card-text">{{ product.description|linebreaks }} </p>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Price: € {{ product.price }}</li>
+                <li class="list-group-item">Discount: € {{ product.discount_amount }}</li>
+              </ul>
+              <div class="card-body">
+
+              <a href="{{ product.get_absolute_url }}" class="btn btn-danger">Add to Cart</a>
+              </div>
+            </div>
+      </div>

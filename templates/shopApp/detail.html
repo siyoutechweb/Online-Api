@@ -1,0 +1,183 @@
+{% extends "main.html" %}
+{% load static %}
+{% block content %}
+{% load social_share %}
+{% load qr_tags %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>    {% block title %}
+          {{ product.name }}
+        {% endblock %}</title>
+
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" rel="stylesheet">
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script> -->
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.js"></script>
+
+
+
+  </head>
+  <body>
+<style>
+.cards {
+  max-width: 100%;
+  margin: 10px 10px;
+  padding: 50px;
+  display: grid;
+  grid-gap: 1rem;
+}
+@media (min-width: 300px) {
+  .cards { grid-template-columns: repeat(2, 1fr); }
+}
+
+
+.row {
+  margin: 15px;
+}
+.container {
+  position: relative;
+  text-align: center;
+  color: black;
+}
+.top-left {
+  position: absolute;
+  top: 8px;
+  left: 16px;
+}
+}
+</style>
+<div class="container">
+<div class="row">
+<a href="{% if product.image1 %}{{ product.image1.url }}{% else %}{% static "images/no_image.png" %}{% endif %}" data-toggle="lightbox" data-gallery="gallery" class="col-md-4">
+  <img src="{% if product.image1 %}{{ product.image1.url }}{% else %}{% static "images/no_image.png" %}{% endif %}" class="img-fluid rounded">
+</a>
+<a href="{% if product.image2 %}{{ product.image2.url }}{% else %}{% static "images/no_image.png" %}{% endif %}" data-toggle="lightbox" data-gallery="gallery" class="col-md-4">
+  <img src="{% if product.image2 %}{{ product.image2.url }}{% else %}{% static "images/no_image.png" %}{% endif %}" class="img-fluid rounded">
+</a>
+<a href="{% if product.image3 %}{{ product.image3.url }}{% else %}{% static "images/no_image.png" %}{% endif %}" data-toggle="lightbox" data-gallery="gallery" class="col-md-4">
+  <img src="{% if product.image3 %}{{ product.image3.url }}{% else %}{% static "images/no_image.png" %}{% endif %}" class="img-fluid rounded">
+</a>
+</div>
+</div>
+
+
+      <div class="cards">
+        <div class="card" >
+          <div class="card-body">
+            <h5 class="card-title">{{ product.name }} </h5>
+            <p class="card-title">{% post_to_facebook object_or_url %} </p>
+            {% post_to_twitter "Good Product: {{product.name}}. Check it out!" object_or_url "Post to Twitter" %}
+            {% post_to_whatsapp object_or_url "Share via WhatsApp" %}
+            {% send_email object.title "Good Product: {{product.name}}. Check it out!" object_or_url "Share via email" %}
+            <h6 class="card-subtitle mb-2 text-muted">Category: {{product.category.name}}</h6>
+            <p class="card-text">{{ product.description|linebreaks }}</p>
+
+            <hr>
+            <form action="{% url "cart:cart_add" product.id %}" method="post">
+            {{ cart_product_form }}
+            {% csrf_token %}
+            <input type="submit" class="btn btn-primary" value="Add to Cart">
+            <hr>
+            </form>
+            <hr>
+            {% if not product.comments.all  %}
+            <p>No Comments on {{product.name}} </p>
+            {% else %}
+              {% for comment in product.comments.all %}
+              <p> Written by: <strong>{{ comment.name }}</strong> </p>
+              <hr>
+              <p>{{ comment.body }}</p>
+              {% endfor %}
+            {% endif %}
+            <hr>
+            {% block content0 %}
+            {% endblock %}
+
+
+
+            <!-- <a href="#" class="btn btn-primary"><i class="fa fa-cart-arrow-down"></i> Add to Cart</a> -->
+          </div>
+        </div>
+        <div class="card" >
+          <div class="card-body">
+
+
+
+            <ul class="list-group">
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                Price: € {{ product.price }} | Discount: € {{ product.discount_amount }}
+                <a href="#" class="btn btn-primary"><i class="fa fa-shopping-bag"></i> {{product.store.name}}</a>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+
+                {% qr_from_object product 'm' %}
+
+                <!-- {{ request.build_absolute_uri|stringformat:'s' }} -->
+
+
+
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                Quantity :  {{ product.qty }} Unites
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                Added :  {{ product.created }}
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                Raiting :
+                <span class="badge badge-primary badge-pill">{{ product.raiting }}/10</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <i class="fa fa-heart" aria-hidden="true"></i> :
+
+                <span class="badge badge-primary badge-pill">{{like_count}}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                Tags :
+                <span class="badge badge-primary badge-pill">{{ product.tag }}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                Tax : € {{ product.tax }}
+              </li>
+
+
+
+
+            </ul>
+          </div>
+          <div class="container">
+            <!-- <img class="card-img-top" src="{% static "images/cubev.png" %}" alt="Card image cap"> -->
+            <!-- <div class="top-left">{{ product.name }} (X: {{ product.log_x }} m | Y: {{ product.log_y }} m | Z: {{ product.log_z }} m)</div> -->
+          </div>
+        </div>
+      </div>
+
+<!-- all js stuff here  -->
+
+
+<script type="text/javascript">
+$(document).on("click", '[data-toggle="lightbox"]', function(event) {
+  event.preventDefault();
+  $(this).ekkoLightbox();
+});
+</script>
+
+
+
+
+
+  </body>
+</html>
+
+
+
+
+
+
+
+{% endblock %}

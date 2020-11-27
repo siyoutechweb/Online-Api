@@ -1,0 +1,140 @@
+{% extends "main.html" %}
+
+
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}
+  {% if category %}{{ category.name }}{% else %}Products{% endif %}
+{% endblock %}
+{% block content %}
+<style>
+
+
+.cards {
+  max-width: 100%;
+  margin: 0 0;
+  display: grid;
+  grid-gap: 1rem;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+.nav-pag{
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+@media (min-width: 300px) {
+  .cards { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 600px) {
+  .cards { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 900px) {
+  .cards { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (min-width: 1200px) {
+  .cards { grid-template-columns: repeat(5, 1fr); }
+}
+
+@media (min-width: 1500px) {
+  .cards { grid-template-columns: repeat(6, 1fr); }
+}
+
+@media (min-width: 1800px) {
+  .cards { grid-template-columns: repeat(7, 1fr); }
+}
+
+@media (min-width: 2100px) {
+  .cards { grid-template-columns: repeat(8, 1fr); }
+}
+
+
+
+
+
+
+</style>
+
+  <form class="searchform" action="" method="get">
+
+    <div class="row">
+    <div class="col-3">
+      {{ myFilter.form.category|as_crispy_field }}
+    </div>
+    <div class="col-3">
+      {{ myFilter.form.brand|as_crispy_field }}
+    </div>
+    <div class="col-3">
+      {{ myFilter.form.store|as_crispy_field }}
+    </div>
+    <div class="col-3">
+      {{ myFilter.form.barcode|as_crispy_field }}
+    </div>
+  </div>
+
+
+
+
+
+    <input type="submit" name="Search" class="btn btn-success" value="Search">
+  </form>
+
+
+<div class="cards">
+  {% for product in products.object_list %}
+
+    <div class="card">
+     <img class="card-img-top" src="{% if product.image1 %}{{ product.image1.url }}{% else %}{% static "images/no_image.png" %}{% endif %}" alt="Card image cap" width="400" height="300">
+     <div class="card-body">
+       <h5 class="card-title">{{ product.name }}</h5>
+       <p class="card-text">{{ product.short_description }}</p>
+     </div>
+     <ul class="list-group list-group-flush">
+       <li class="list-group-item">Price: € {{ product.price }}</li>
+       <li class="list-group-item">Discount: € {{ product.discount_amount }}</li>
+     </ul>
+     <form action="{% url "cart:cart_add" product.id %}" method="post">
+     <div class="card-body">
+     <a href="{{ product.get_absolute_url }}" class="btn btn-primary">Details</a>
+
+     <input name="quantity" id="quantity" value="1" hidden>
+     {% csrf_token %}
+     <input type="submit" class="btn btn-danger" value="Add to Cart">
+
+     </div>
+        </form>
+   </div>
+  {% endfor %}
+</div>
+<nav aria-label="Page navigation example" class="nav-pag">
+
+  <ul class="pagination">
+    {% if products.has_previous %}
+    <li class="page-item"> <a class="page-link" href="?page={{ products.previous_page_number }}">Previous</a> </li>
+    {%endif%}
+    {%for pg in products.paginator.page_range%}
+      {%if products.number == pg%}
+      <li class="class=page-item active" > <a class="page-link" href="?page={{pg}}">{{pg}}</a> </li>
+      {%else%}
+      <li> <a class="page-link" href="?page={{pg}}"> {{pg}}</a> </li>
+      {%endif%}
+    {%endfor%}
+  </ul>
+</nav>
+
+  <!-- class="product-list" -->
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

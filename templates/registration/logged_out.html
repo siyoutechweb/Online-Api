@@ -1,0 +1,33 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}Logged out{% endblock %}</title>
+  </head>
+  <body>
+
+      <h1>Logged out</h1>
+      <p>
+        You have been successfully logged out.
+        You can <a href="{% url "login" %}">log-in again</a>.
+      </p>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

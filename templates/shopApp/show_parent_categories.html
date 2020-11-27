@@ -1,0 +1,31 @@
+{% extends "main.html" %}
+{%block content%}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+<div class="container">
+
+
+
+    <form class="" action="" method="POST">
+      {% csrf_token %}
+      {{form|crispy}}
+      <input type="submit" name="" value="Add" class="btn btn-success">
+    </form>
+
+    <ul>
+      {%for pc in ParentCategory%}
+      <li>Name: {{pc.name}} | Slug: {{pc.slug}}
+      <a href="{% url 'shopApp:delete_parent_categories' pc.id %}"> <button type="button" name="button" class="btn btn-danger"> <i class="fa fa-trash-o" aria-hidden="true"></i>Delete</button> </a>
+      </li>
+      {%endfor%}
+    </ul>
+</div>
+  </body>
+</html>
+{%endblock%}

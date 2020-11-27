@@ -1,0 +1,66 @@
+{% extends "main.html" %}
+{% block title %}
+  Thank you
+{% endblock %}
+{%load static%}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <script src="{% static 'js/html2pdf.js-master/dist/html2pdf.bundle.min.js' %}"></script>
+    <script>
+      function generatePDF() {
+        // Choose the element that our invoice is rendered in.
+        const element = document.getElementById("card");
+        // Choose the element and save the PDF for our user.
+        html2pdf()
+          .from(element)
+          .save();
+      }
+    </script>
+  </head>
+  <body>
+
+
+<div class="container">
+
+
+      <h1>Thank you</h1>
+      <p>Your order has been successfully completed. Your order number is
+      <strong>{{ order.id }}</strong>.</p>
+      <div class="card" id="card">
+
+       <div class="card-body">
+         <h5 class="card-title">Order #{{order.id}} Details <img src="{% static "images/siyou.png" %}" style="height: 100px;weight:20%;float:right;"></h5>
+         <p class="card-text"> <strong>Orderd by:</strong> {{ order.first_name }} {{ order.last_name }} ({{ order.email }})</p>
+       </div>
+       <ul class="list-group list-group-flush">
+         <li class="list-group-item" style="text-align:center;">Address: {{ order.address }} | City: {{ order.city }} | Postal Code: {{ order.postal_code }} </li>
+         {%for orderitem in orderitems%}
+         <li class="list-group-item">Product :{{orderitem.product.name}} <br> Price :€{{orderitem.price}} <br>  Discount amount per item:€{{orderitem.discount_amount}} <br> Quantity :{{orderitem.quantity}}</li>
+         {%endfor%}
+
+         <li class="list-group-item" style="text-align:center;">Total Cost :€{{order.get_total_cost}}</li>
+         <li class="list-group-item" style="text-align:center;">Total Discount :€{{order.get_total_discount}}</li>
+         <li class="list-group-item" style="text-align:center;">Total Cost After Discount:€{{order.get_total_cost_after_discount}}</li>
+
+       </ul>
+       <!-- <div class="card-body">
+
+       </div> -->
+     </div>
+      <br>
+  <button  class="btn btn-success" onclick="generatePDF()" ><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Generate PDF</button>
+</div>
+  </body>
+</html>
+
+
+
+
+
+
+
+{% endblock %}

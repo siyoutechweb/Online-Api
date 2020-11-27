@@ -1,0 +1,22 @@
+{% extends "main.html" %}
+{%block content%}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class="container">
+
+
+<form class="" action="" method="POST">
+{% csrf_token %}
+{{form|crispy}}
+<input type="submit" name="" value="Export CSV" class="btn btn-success">
+</form>
+    </div>
+  </body>
+</html>
+{%endblock%}

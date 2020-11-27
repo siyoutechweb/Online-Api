@@ -1,0 +1,76 @@
+{% extends "main.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{%block content%}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <script src="{% static 'js/html2pdf.js-master/dist/html2pdf.bundle.min.js' %}"></script>
+    <script>
+      function generatePDF() {
+        // Choose the element that our invoice is rendered in.
+        const element = document.getElementById("invoice");
+        // Choose the element and save the PDF for our user.
+        html2pdf()
+          .from(element)
+          .save();
+      }
+    </script>
+  </head>
+
+  <body>
+<div class="container">
+  <div class="card text-center" id="invoice">
+    <div class="card-header">
+      Order #{{order.id}} Summary
+    </div>
+    <div class="card-body">
+
+
+
+      <h5 class="card-title">Order by {{order.first_name}} {{order.last_name}} ({{order.email}}) </h5>
+      <p class="card-text">
+        Full Address: {{order.address}} <br>
+        City : {{order.city}} <br>
+        Postal Code : {{order.postal_code}} <br>
+        Order Date and Time: {{order.created}} <br>
+        Order State: {%if orderitem.approved%} Approved {%else%} Disapproved{%endif%}
+        <hr>
+
+
+
+
+      </p>
+
+    </div>
+    <div class="card-footer text-muted">
+      {{order.created}}
+    </div>
+
+  </div>
+  <a href="#" onclick="generatePDF()" class="btn btn-success">Export PDF</a>
+
+<div class="form-group">
+
+
+<form  action="" method="POST" >
+  {% csrf_token %}
+
+
+  {{ form|crispy }}
+
+
+
+<input type="submit" name="Create" class="btn btn-success" value="Save">
+</form>
+</div>
+</div>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+  </body>
+</html>
+{%endblock%}

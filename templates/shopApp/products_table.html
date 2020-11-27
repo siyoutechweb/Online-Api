@@ -1,0 +1,205 @@
+{% extends "main.html" %}
+{% load static %}
+{% load i18n %}
+{% load l10n %}
+{%block content%}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+      <script src="{% static 'js/html2pdf.js-master/dist/html2pdf.bundle.min.js' %}"></script>
+      <script>
+        function generatePDF() {
+          // Choose the element that our invoice is rendered in.
+          const element = document.getElementById("testTable");
+          // Choose the element and save the PDF for our user.
+          html2pdf()
+            .from(element)
+            .save();
+        }
+      </script>
+  </head>
+  <body>
+
+
+
+    <div id="toprint">
+
+
+
+    <hr>
+    <a href="{% url "shopApp:create_product" %}"> <button class="btn btn-success" ><i class="fa fa-plus" aria-hidden="true"></i> {% trans "Add" %} {% trans "Product" %}</button> </a>
+
+    <button  class="btn btn-success" onclick="generatePDF()" ><i class="fa fa-file-pdf-o" aria-hidden="true"></i> {% trans "Generate PDF" %}</button>
+    <!--Add External Libraries - JQuery and jspdf
+    check out url - https://scotch.io/@nagasaiaytha/generate-pdf-from-html-using-jquery-and-jspdf
+    -->
+    <button id="btnExport" class="btn btn-success" onclick="javascript:xport.toCSV('testTable');"> <i class="fa fa-file-excel-o" aria-hidden="true"></i> {% trans "Generate CSV" %}</button>
+    <!-- <button id="btnExport" class="btn btn-success" onclick="javascript:xport.toXLS('testTable');"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Generate XLS</button> -->
+    <hr>
+    <table class="table" id="testTable" style="width:100%;">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">{% trans "Name" %}</th>
+      <th scope="col">{% trans "Barcode" %}</th>
+      <th scope="col">{% trans "Price" %}</th>
+      <th scope="col">{% trans "Quantity" %}</th>
+      <th scope="col">{% trans "Warn Quantity" %}</th>
+      <th scope="col">{% trans "Discount" %}</th>
+      <th scope="col">{% trans "Tax" %}</th>
+      <th scope="col">{% trans "Likes" %}</th>
+      <th scope="col">{% trans "Added" %}</th>
+      <th scope="col">{% trans "Modified" %}</th>
+      <th scope="col">{% trans "Actions" %}</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    {%for p in products%}
+    <tr>
+      <th scope="row">{{p.id}}</th>
+      <td>{{p.name}}</td>
+      <td>{{p.barcode}}</td>
+      <td>{{p.price}}</td>
+      <td>{{p.qty}}</td>
+      <td>{{p.warn_qty}}</td>
+      <td>{{p.discount_amount}}</td>
+      <td>{{p.tax}}</td>
+      <td>{{p.like_count}}</td>
+      <td>{{p.created}}</td>
+      <td>{{p.updated}}</td>
+      <td>
+      <a href="{% url 'shopApp:update_product' p.id %}"> <button type="button" name="button" class="btn btn-info"><i class="fa fa-bars" aria-hidden="true"></i> {% trans "Update" %}</button> </a>
+      <a href="{% url 'shopApp:delete_product' p.id %}"> <button type="button" name="button" class="btn btn-danger"> <i class="fa fa-trash-o" aria-hidden="true"></i> {% trans "Delete" %}</button> </a>
+      </td>
+    </tr>
+    <tr>
+    {%endfor%}
+  </tbody>
+</table>
+</div>
+<script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/0.9.0rc1/jspdf.min.js"></script>
+<script type="text/javascript">
+    // pdf export
+    var doc = new jsPDF();
+    var specialElementHandlers = {
+        '#editor': function (element, renderer) {
+            return true;
+        }
+    };
+
+    $('#cmd').click(function () {
+        doc.fromHTML($('#toprint').html(), 15, 15, {
+            'width': 170,
+                'elementHandlers': specialElementHandlers
+        });
+        doc.save('siyou-online-'+Date(Date.now())+'.pdf');
+    });
+    // end pdf export
+    // start csv export
+    var xport = {
+  _fallbacktoCSV: true,
+  toXLS: function(tableId, filename) {
+    this._filename = (typeof filename == 'undefined') ? tableId : filename;
+
+    //var ieVersion = this._getMsieVersion();
+    //Fallback to CSV for IE & Edge
+    if ((this._getMsieVersion() || this._isFirefox()) && this._fallbacktoCSV) {
+      return this.toCSV(tableId);
+    } else if (this._getMsieVersion() || this._isFirefox()) {
+      alert("Not supported browser");
+    }
+
+    //Other Browser can download xls
+    var htmltable = document.getElementById(tableId);
+    var html = htmltable.outerHTML;
+
+    this._downloadAnchor("data:application/vnd.ms-excel" + encodeURIComponent(html), 'xls');
+  },
+  toCSV: function(tableId, filename) {
+    this._filename = (typeof filename === 'undefined') ? tableId : filename;
+    // Generate our CSV string from out HTML Table
+    var csv = this._tableToCSV(document.getElementById(tableId));
+    // Create a CSV Blob
+    var blob = new Blob([csv], { type: "text/csv" });
+
+    // Determine which approach to take for the download
+    if (navigator.msSaveOrOpenBlob) {
+      // Works for Internet Explorer and Microsoft Edge
+      navigator.msSaveOrOpenBlob(blob, this._filename + ".csv");
+    } else {
+      this._downloadAnchor(URL.createObjectURL(blob), 'csv');
+    }
+  },
+  _getMsieVersion: function() {
+    var ua = window.navigator.userAgent;
+
+    var msie = ua.indexOf("MSIE ");
+    if (msie > 0) {
+      // IE 10 or older => return version number
+      return parseInt(ua.substring(msie + 5, ua.indexOf(".", msie)), 10);
+    }
+
+    var trident = ua.indexOf("Trident/");
+    if (trident > 0) {
+      // IE 11 => return version number
+      var rv = ua.indexOf("rv:");
+      return parseInt(ua.substring(rv + 3, ua.indexOf(".", rv)), 10);
+    }
+
+    var edge = ua.indexOf("Edge/");
+    if (edge > 0) {
+      // Edge (IE 12+) => return version number
+      return parseInt(ua.substring(edge + 5, ua.indexOf(".", edge)), 10);
+    }
+
+    // other browser
+    return false;
+  },
+  _isFirefox: function(){
+    if (navigator.userAgent.indexOf("Firefox") > 0) {
+      return 1;
+    }
+
+    return 0;
+  },
+  _downloadAnchor: function(content, ext) {
+      var anchor = document.createElement("a");
+      anchor.style = "display:none !important";
+      anchor.id = "downloadanchor";
+      document.body.appendChild(anchor);
+
+      // If the [download] attribute is supported, try to use it
+
+      if ("download" in anchor) {
+        anchor.download = this._filename + "." + ext;
+      }
+      anchor.href = content;
+      anchor.click();
+      anchor.remove();
+  },
+  _tableToCSV: function(table) {
+    // We'll be co-opting `slice` to create arrays
+    var slice = Array.prototype.slice;
+
+    return slice
+      .call(table.rows)
+      .map(function(row) {
+        return slice
+          .call(row.cells)
+          .map(function(cell) {
+            return '"t"'.replace("t", cell.textContent);
+          })
+          .join(",");
+      })
+      .join("\r\n");
+  }
+};
+
+</script>
+  </body>
+</html>
+{%endblock%}

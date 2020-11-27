@@ -1,0 +1,226 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-11-26 11:21+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: .\templates\main.html:263
+msgid "Sign in"
+msgstr "Connecter"
+
+#: .\templates\main.html:266
+msgid "Home"
+msgstr "Accueil"
+
+#: .\templates\main.html:267
+msgid "Products"
+msgstr "Produits"
+
+#: .\templates\main.html:269
+msgid "My Orders"
+msgstr "Mes Commandes"
+
+#: .\templates\main.html:277
+msgid "Dashboard"
+msgstr "Tableau de bord"
+
+#: .\templates\main.html:278
+msgid "Stock"
+msgstr ""
+
+#: .\templates\main.html:279
+msgid "Orders"
+msgstr "Commandes"
+
+#: .\templates\main.html:280
+msgid "Store"
+msgstr "Boutique"
+
+#: .\templates\main.html:287
+msgid "Language"
+msgstr "Langue"
+
+#: .\templates\main.html:347
+msgid "Categories"
+msgstr "Catégories"
+
+#: .\templates\main.html:390
+msgid "SuperUser"
+msgstr "Super-utilisateur"
+
+#: .\templates\main.html:416
+msgid "Profile"
+msgstr "Profil"
+
+#: .\templates\main.html:418
+msgid "Settings"
+msgstr "Réglages"
+
+#: .\templates\main.html:420
+msgid "Logout"
+msgstr "Déconnecter"
+
+#: .\templates\main.html:440
+msgid "Login required"
+msgstr "Connexion requise"
+
+#: .\templates\main.html:446
+msgid "Login required to view all elements of our website.please"
+msgstr "Connexion requise pour voir tous les éléments de notre site Web."
+
+#: .\templates\main.html:446
+msgid "Login"
+msgstr "S'identifier"
+
+#: .\templates\main.html:446
+msgid "or"
+msgstr "ou"
+
+#: .\templates\main.html:446
+msgid "create a new account"
+msgstr "créer un nouveau compte"
+
+#: .\templates\main.html:449
+msgid "Close"
+msgstr "Fermer"
+
+#: .\templates\main.html:485
+msgid "About"
+msgstr "À propos"
+
+#: .\templates\main.html:516
+msgid "About Us"
+msgstr "À propos de nous"
+
+#: .\templates\main.html:517
+msgid "Contact Us"
+msgstr "Nous contacter"
+
+#: .\templates\main.html:527
+msgid "Copyright"
+msgstr ""
+
+#: .\templates\main.html:527
+msgid "2020 All Rights Reserved by"
+msgstr ""
+
+#: .\templates\main.html:528
+msgid "SIYOU Technology"
+msgstr ""
+
+#: .\templates\shopApp\home_client.html:208
+msgid "All"
+msgstr "Tous"
+
+#: .\templates\shopApp\home_client.html:243
+msgid "SIYOU Online Partnership Program"
+msgstr "PROGRAMME DE PARTENARIAT EN LIGNE SIYOU"
+
+#: .\templates\shopApp\home_client.html:244
+msgid "Our Promoted Products"
+msgstr "Nos produits promus"
+
+#: .\templates\shopApp\home_client.html:245
+msgid ""
+"Below you will find a list of our Promoted Products usually that means "
+"theres a great discount on them"
+msgstr ""
+"Vous trouverez ci-dessous une liste de nos produits promus, ce qui signifie généralement"
+"il y a une grande remise sur eux"
+#: .\templates\shopApp\home_client.html:274
+msgid "Cart"
+msgstr "Chariot"
+
+#: .\templates\shopApp\home_client.html:276
+msgid "View"
+msgstr "Vue"
+
+#: .\templates\shopApp\home_client.html:302
+msgid "Best watches from ROLEX"
+msgstr "Les meilleures montres de ROLEX"
+
+#: .\templates\shopApp\home_client.html:304
+msgid ""
+"Below you will find a list of best watches ever created from the giant ROLEX."
+msgstr ""
+"Vous trouverez ci-dessous une liste des meilleures montres jamais créées par le géant ROLEX."
+#: .\templates\shopApp\products_table.html:32
+msgid "Add"
+msgstr "Ajouter"
+
+#: .\templates\shopApp\products_table.html:32
+msgid "Product"
+msgstr "Produit"
+
+#: .\templates\shopApp\products_table.html:34
+msgid "Generate PDF"
+msgstr "Générer PDF"
+
+#: .\templates\shopApp\products_table.html:38
+msgid "Generate CSV"
+msgstr "Générer CSV"
+
+#: .\templates\shopApp\products_table.html:45
+msgid "Name"
+msgstr "Nom"
+
+#: .\templates\shopApp\products_table.html:46
+msgid "Barcode"
+msgstr "Code à barre"
+
+#: .\templates\shopApp\products_table.html:47
+msgid "Price"
+msgstr "Prix"
+
+#: .\templates\shopApp\products_table.html:48
+msgid "Quantity"
+msgstr "Quantité"
+
+#: .\templates\shopApp\products_table.html:49
+msgid "Warn Quantity"
+msgstr "Avertir la quantité"
+
+#: .\templates\shopApp\products_table.html:50
+msgid "Discount"
+msgstr "Remise"
+
+#: .\templates\shopApp\products_table.html:51
+msgid "Tax"
+msgstr "Impôt"
+
+#: .\templates\shopApp\products_table.html:52
+msgid "Likes"
+msgstr "Aime"
+
+#: .\templates\shopApp\products_table.html:53
+msgid "Added"
+msgstr "Ajouté"
+
+#: .\templates\shopApp\products_table.html:54
+msgid "Modified"
+msgstr "Modifié"
+
+#: .\templates\shopApp\products_table.html:55
+msgid "Actions"
+msgstr ""
+
+#: .\templates\shopApp\products_table.html:74
+msgid "Update"
+msgstr "Mise à jour"
+
+#: .\templates\shopApp\products_table.html:75
+msgid "Delete"
+msgstr "Supprimer"

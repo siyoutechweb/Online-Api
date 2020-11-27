@@ -1,0 +1,90 @@
+{% extends "main.html" %}
+{% load static %}
+{%block content%}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <style >
+    .cards {
+      max-width: 100%;
+      margin: 0 0;
+      display: grid;
+      grid-gap: 1rem;
+      margin-top: 20px;
+      margin-left: 20px;
+    }
+    @media (min-width: 300px) {
+      .cards { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (min-width: 600px) {
+      .cards { grid-template-columns: repeat(3, 1fr); }
+    }
+    </style>
+    <div class="card text-center">
+      <div class="card-header">
+        Contact Us
+      </div>
+      <div class="card-body">
+        {%for store in stores%}
+        <h5 class="card-title">{{store.name}}</h5>
+        <p class="card-text"><i class="fa fa-map-marker" aria-hidden="true"></i>{{store.address}} <br> <i class="fa fa-globe" aria-hidden="true"></i>{{store.country}} <br> City:{{store.city}}
+          <br> Street:{{store.street}} <br> Zip Code:{{store.zip_code}} <br> <i class="fa fa-mobile" aria-hidden="true"></i>  {{store.phone}} <br> {{store.like_count}} <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> </p>
+      <br>
+        <ul class="social-icons">
+          <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+          <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+          <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
+          <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+        </ul>
+      </div>
+      <div class="card-footer text-muted">
+        Latest added Products on our Shop
+      </div>
+    </div>
+    {%endfor%}
+    <div class="row">
+      <div class="container">
+      <div class="cards">
+  {%for product in products%}
+
+
+
+  <div class="card">
+   <img class="card-img-top" src="{% if product.image1 %}{{ product.image1.url }}{% else %}{% static "images/no_image.png" %}{% endif %}" alt="Card image cap" width="400" height="300">
+   <div class="card-body">
+     <h5 class="card-title">{{ product.name }}</h5>
+     <p class="card-text">{{ product.short_description }}</p>
+   </div>
+   <ul class="list-group list-group-flush">
+     <li class="list-group-item">Price: € {{ product.price }}</li>
+     <li class="list-group-item">Discount: € {{ product.discount_amount }}</li>
+   </ul>
+   <form action="{% url "cart:cart_add" product.id %}" method="post">
+   <div class="card-body">
+   <a href="{{ product.get_absolute_url }}" class="btn btn-primary">Details</a>
+
+   <input name="quantity" id="quantity" value="1" hidden>
+   {% csrf_token %}
+   <input type="submit" class="btn btn-danger" value="Add to Cart">
+
+   </div>
+      </form>
+ </div>
+   {%endfor%}
+  </div>
+</div>
+</div>
+
+
+
+
+
+
+  </body>
+</html>
+{%endblock%}

@@ -1,0 +1,235 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-11-26 11:21+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: .\templates\main.html:263
+msgid "Sign in"
+msgstr "登入"
+
+#: .\templates\main.html:266
+msgid "Home"
+msgstr "首页"
+
+#: .\templates\main.html:267
+msgid "Products"
+msgstr "产品展示"
+
+#: .\templates\main.html:269
+msgid "My Orders"
+msgstr "我的订单"
+
+#: .\templates\main.html:277
+msgid "Dashboard"
+msgstr "仪表板"
+
+#: .\templates\main.html:278
+msgid "Stock"
+msgstr "库存"
+
+#: .\templates\main.html:279
+msgid "Orders"
+msgstr "订单"
+
+#: .\templates\main.html:280
+msgid "Store"
+msgstr "商店"
+
+#: .\templates\main.html:287
+msgid "Language"
+msgstr ""
+
+#: .\templates\main.html:347
+msgid "Categories"
+msgstr "分类目录"
+
+#: .\templates\main.html:390
+msgid "SuperUser"
+msgstr "超级用户"
+
+#: .\templates\main.html:416
+msgid "Profile"
+msgstr "个人资料"
+
+#: .\templates\main.html:418
+msgid "Settings"
+msgstr "设定值"
+
+#: .\templates\main.html:420
+msgid "Logout"
+msgstr "登出"
+
+#: .\templates\main.html:440
+msgid "Login required"
+msgstr "需要登录"
+
+#: .\templates\main.html:446
+msgid "Login required to view all elements of our website.please"
+msgstr "需要登录才能查看我们网站的所有内容。请"
+
+#: .\templates\main.html:446
+msgid "Login"
+msgstr "登录"
+
+#: .\templates\main.html:446
+msgid "or"
+msgstr "要么"
+
+#: .\templates\main.html:446
+msgid "create a new account"
+msgstr "创建一个新账户"
+
+#: .\templates\main.html:449
+msgid "Close"
+msgstr "关"
+
+#: .\templates\main.html:485
+msgid "About"
+msgstr "关于"
+
+#: .\templates\main.html:516
+msgid "About Us"
+msgstr "关于我们"
+
+#: .\templates\main.html:517
+msgid "Contact Us"
+msgstr "联系我们"
+
+#: .\templates\main.html:527
+msgid "Copyright"
+msgstr "版权"
+
+#: .\templates\main.html:527
+msgid "2020 All Rights Reserved by"
+msgstr "2020版权所有"
+
+#: .\templates\main.html:528
+msgid "SIYOU Technology"
+msgstr "SIYOU Technology"
+
+#: .\templates\shopApp\home_client.html:208
+msgid "All"
+msgstr "所有"
+
+#: .\templates\shopApp\home_client.html:243
+msgid "SIYOU Online Partnership Program"
+msgstr "思优在线合作伙伴计划"
+
+#: .\templates\shopApp\home_client.html:244
+msgid "Our Promoted Products"
+msgstr "我们的促销产品"
+
+#: .\templates\shopApp\home_client.html:245
+msgid ""
+"Below you will find a list of our Promoted Products usually that means "
+"theres a great discount on them"
+msgstr "您通常会在下面找到我们促销产品的列表，这意味着它们有很大的折扣"
+
+#: .\templates\shopApp\home_client.html:274
+msgid "Cart"
+msgstr "大车"
+
+#: .\templates\shopApp\home_client.html:276
+msgid "View"
+msgstr "视图"
+
+#: .\templates\shopApp\home_client.html:302
+msgid "Best watches from ROLEX"
+msgstr "ROLEX最好的手表"
+
+#: .\templates\shopApp\home_client.html:304
+msgid ""
+"Below you will find a list of best watches ever created from the giant ROLEX."
+msgstr "在下面，您会找到巨型劳力士制造过的最佳手表清单。"
+
+#: .\templates\shopApp\products_table.html:32
+#, fuzzy
+#| msgid "Added"
+msgid "Add"
+msgstr "添加"
+
+#: .\templates\shopApp\products_table.html:32
+#, fuzzy
+#| msgid "Products"
+msgid "Product"
+msgstr "产品展示"
+
+#: .\templates\shopApp\products_table.html:34
+msgid "Generate PDF"
+msgstr "产生PDF"
+
+#: .\templates\shopApp\products_table.html:38
+msgid "Generate CSV"
+msgstr "产生CSV"
+
+#: .\templates\shopApp\products_table.html:45
+msgid "Name"
+msgstr "名称"
+
+#: .\templates\shopApp\products_table.html:46
+msgid "Barcode"
+msgstr "条码"
+
+#: .\templates\shopApp\products_table.html:47
+#, fuzzy
+#| msgid "Profile"
+msgid "Price"
+msgstr "个人资料"
+
+#: .\templates\shopApp\products_table.html:48
+msgid "Quantity"
+msgstr "数量"
+
+#: .\templates\shopApp\products_table.html:49
+msgid "Warn Quantity"
+msgstr "警告数量"
+
+#: .\templates\shopApp\products_table.html:50
+msgid "Discount"
+msgstr "折扣"
+
+#: .\templates\shopApp\products_table.html:51
+msgid "Tax"
+msgstr "税"
+
+#: .\templates\shopApp\products_table.html:52
+msgid "Likes"
+msgstr "喜欢"
+
+#: .\templates\shopApp\products_table.html:53
+msgid "Added"
+msgstr "添加"
+
+#: .\templates\shopApp\products_table.html:54
+msgid "Modified"
+msgstr "改性"
+
+#: .\templates\shopApp\products_table.html:55
+msgid "Actions"
+msgstr "动作"
+
+#: .\templates\shopApp\products_table.html:74
+msgid "Update"
+msgstr "更新资料"
+
+#: .\templates\shopApp\products_table.html:75
+msgid "Delete"
+msgstr "删除"
+
+#, fuzzy
+#~| msgid "Products"
+#~ msgid "Add Product"
+#~ msgstr "添加产品"

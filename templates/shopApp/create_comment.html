@@ -1,0 +1,9 @@
+{% extends "shopApp/detail.html" %}
+<!DOCTYPE html>
+{% block content0 %}
+    <form method="post">
+      {{ form }}
+      {% csrf_token %}
+    <p><input type="submit" value="Comment"></p>
+    </form>
+ck %}

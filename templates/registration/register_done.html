@@ -1,0 +1,12 @@
+{% extends "main.html" %}
+{% block title %}Welcome{% endblock %}
+{% block content %}
+  <h1>Welcome {{ new_user.username }}!</h1>
+  {% if new_user.profile.store.name != "noStore" %}
+  <p>Your account has been successfully created, your Store name is set to <strong>{{new_user.profile.store}}</strong> by
+    default, you can change it from <a href="/shopApp/store/"> Store management </a>. </p>
+  {% else %}
+  <p>Your account has been successfully created, you can  <a href="{% url "login" %}">Login</a>  now!</p>
+  {% endif %}
+
+{% endblock %}

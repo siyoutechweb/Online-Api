@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>display categories</title>
+  </head>
+  <body>
+    {% if cats %}
+    {% for cat in cats %}
+    <h5>{{cat.name}}</h5>
+    {%endfor%}
+    {%else%}
+    <p>no data</p>
+    {%endif%}
+  </body>
+</html>

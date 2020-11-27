@@ -1,0 +1,372 @@
+{% extends "main.html" %}
+{% load static %}
+{% load i18n %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="{% static 'css/home_client_css.css' %}" >
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+     <!-- CSS -->
+<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+<!-- JavaScript -->
+<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+
+     <!-- Compiled and minified CSS -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  </head>
+  <body>
+    <style>
+    .cards {
+      max-width: 100%;
+      margin: 0 0;
+      display: grid;
+      grid-gap: 1rem;
+      margin-top: 5px;
+      margin-left: 20px;
+    }
+
+    @media (min-width: 300px) {
+      .cards { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (min-width: 600px) {
+      .cards { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (min-width: 900px) {
+      .cards { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    @media (min-width: 1200px) {
+      .cards { grid-template-columns: repeat(5, 1fr); }
+    }
+
+    @media (min-width: 1500px) {
+      .cards { grid-template-columns: repeat(6, 1fr); }
+    }
+    .section-sub-title {
+  font-size: 13px;
+  color: #adb5bd;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  font-weight: 700; }
+
+.section-title {
+  color: #000;
+  font-size: 40px;
+  font-weight: 900; }
+  @media (max-width: 991.98px) {
+    .section-title {
+      font-size: 30px; } }
+
+
+      .product-item {
+
+      text-align: center; }
+      .product-item figure {
+        overflow: hidden;
+        position: relative;
+        margin-bottom: 30px; }
+        .product-item figure:before {
+          z-index: 2;
+          -webkit-transition: .4s all ease;
+          -o-transition: .4s all ease;
+          transition: .4s all ease;
+          -webkit-transform: scale(1.05);
+          -ms-transform: scale(1.05);
+          transform: scale(1.05);
+          position: absolute;
+          content: "";
+          border: 2px solid #faa7f3;
+          left: 20px;
+          right: 20px;
+          top: 5px;
+          bottom: 5px;
+          opacity: 0;
+          visibility: hidden; }
+        .product-item figure img {
+          -webkit-transition: .3s all ease;
+          -o-transition: .3s all ease;
+          transition: .3s all ease;
+          height: 100px;
+          width: 100px;
+          -webkit-transform: scale(1);
+          -ms-transform: scale(1);
+          transform: scale(1); }
+      .product-item h3 {
+        font-size: 18px; }
+        .product-item h3 a {
+          color: #000; }
+          .product-item h3 a:hover {
+            color: #f16821; }
+      .product-item p {
+        line-height: 1.4;
+        font-size: 13px; }
+      .product-item .meta-icons {
+        margin-left: 5px;
+        margin-bottom: 5px;
+        margin-right: 5px;
+        font-size: 13px; }
+        .product-item .meta-icons a {
+          font-size: 16px;
+          position: relative;
+          top: 2px; }
+      .product-item:hover figure:before {
+        opacity: 1;
+        visibility: visible;
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1); }
+      .product-item:hover figure img {
+        -webkit-transform: scale(1.2);
+        -ms-transform: scale(1.2);
+        transform: scale(1.2); }
+        .btn {
+          text-transform: uppercase;
+          font-size: 12px;
+          font-weight: 900;
+          padding: 6px 20px; }
+          .btn:hover, .btn:active, .btn:focus {
+            outline: none;
+            -webkit-box-shadow: none !important;
+            box-shadow: none !important; }
+          .btn.btn-black {
+            border-width: 2px;
+            border-color: #000;
+            background: #000;
+            color: #fff; }
+            .btn.btn-black:hover {
+              color: #000;
+              background-color: transparent; }
+            .btn.btn-black.btn-outline-black {
+              color: #000;
+              background-color: transparent; }
+              .btn.btn-black.btn-outline-black:hover {
+                border-color: #000;
+                background: #000;
+                color: #fff; }
+          .btn.btn-white {
+            border-width: 2px;
+            border-color: #fff;
+            background: #fff;
+            color: #000; }
+            .btn.btn-white:hover {
+              color: #fff;
+              background-color: transparent; }
+            .btn.btn-white.btn-outline-white {
+              color: #fff;
+              background-color: transparent; }
+              .btn.btn-white.btn-outline-white:hover {
+                border-color: #fff;
+                background: #fff;
+                color: #000; }
+                .wishlist span {
+                  color: ##f72a1b;
+                  -webkit-transition: .3s all ease;
+                  -o-transition: .3s all ease;
+                  transition: .3s all ease; }
+
+                .wishlist.active span, .wishlist:hover span {
+                  color: #f72a1b; }
+                  * {
+                    -webkit-box-sizing: border-box;
+                    box-sizing: border-box;
+                  }
+
+                  .carousel {
+                    background: #ffffff;
+                  }
+
+                  .carousel img {
+                    display: block;
+                    height: 400px;
+                  }
+
+
+    </style>
+<!-- here the code for the second slider -->
+
+<!-- end code for second slider -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+<script src="{% static 'js/home_client_js.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+      <div class="row">
+
+
+            <div class="col-md-2">
+              <ul class="list-group">
+                <a href="{% url "shopApp:product_list" %}" ><li class="list-group-item" id="demofont">{% trans "All" %} <span class="badge badge-primary badge-pill" style="float: right;">{{categories.count}}</span></li></a>
+                {%for category in categories%}
+                <!-- old cat  href="{{ category.get_absolute_url }}" -->
+                <a href="{% url "shopApp:product_list" %}"><li class="list-group-item" id="demofont">{{category.name}}<span class="badge badge-primary badge-pill" style="float: right;">{{category.products.count}}</span></li></a>
+                {%endfor%}
+              </ul>
+            </div>
+
+
+            <div class="col-md-10" style="margin: 1% 0 0 0;">
+                <div class="row">
+              <div class="containerx" style="height: 400px;weight:100%;">
+                <div class="box">
+                  <img src="{% static "images/tomford.png" %}">
+                  <span>Product 1</span>
+                </div>
+                <div class="box">
+                  <img src="{% static "images/swatch.png" %}">
+                  <span>Product 2</span>
+                </div>
+                <div class="box">
+                  <a href="#"></a>
+                  <img src="{% static "images/s4.jpg" %}">
+                  <span>Product 3</span>
+                </div>
+                <div class="box">
+                  <img src="{% static "images/r4.PNG" %}">
+                  <span>Product 4</span>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="row mb-5 justify-content-center">
+  <div class="col-md-6 text-center">
+    <h3 class="section-sub-title">{% trans "SIYOU Online Partnership Program" %}</h3>
+    <h2 class="section-title mb-3">{% trans "Our Promoted Products" %}</h2>
+    <p>{% trans "Below you will find a list of our Promoted Products usually that means theres a great discount on them" %}</p>
+  </div>
+</div>
+
+
+                <div class="row">
+                  <div class="cards">
+
+
+              {%for product in products%}
+
+              <div class="product-item">
+                <figure>
+                  <img src="{% if product.image1 %}{{ product.image1.url }}{% else %}{% static "images/no_image.png" %}{% endif %}" alt="Image" class="img-fluid"  width="100px" height="100px">
+                </figure>
+                <div class="px-4">
+                  <h3><a href="{{ product.get_absolute_url }}">{{ product.name|slice:":23" }}</a></h3>
+                  <div class="mb-3">
+                    <span class="meta-icons mr-3"><a href="#" class="mr-2"><span class="fa fa-star-o"></span></a> 5.0</span>
+                    <span class="meta-icons mr-3"><a href="#" class="mr-2"><span class="fa fa-eur"></span></a> {{ product.price }}</span>
+                  </div>
+
+                  <div>
+                    <form action="{% url "cart:cart_add" product.id %}" method="post">
+
+
+
+                    <input name="quantity" id="quantity" value="1" hidden>
+                    {% csrf_token %}
+                    <input type="submit" class="btn btn-black mr-1 rounded-0" value="{% trans "Cart" %}">
+
+                    <a href="{{ product.get_absolute_url }}" class="btn btn-black btn-outline-black ml-1 rounded-0">{% trans "View" %}</a>
+
+                       </form>
+
+
+
+
+
+
+
+                  </div>
+                </div>
+              </div>
+
+
+
+
+                {%endfor%}
+                </div>
+                <hr>
+
+              </div>
+
+              <br>
+              <div class="row mb-5 justify-content-center">
+    <div class="col-md-6 text-center">
+      <h3 class="section-sub-title">{% trans "Best watches from ROLEX" %}</h3>
+
+      <p>{% trans "Below you will find a list of best watches ever created from the giant ROLEX." %}</p>
+    </div>
+  </div>
+
+              <!-- Flickity HTML init -->
+              <div class="carousel"
+                data-flickity='{ "imagesLoaded": true,"autoPlay": 1000  }'>
+                <img src="https://i.ibb.co/fXGcnLc/04.jpg" alt="orange tree" />
+                <img src="https://i.ibb.co/h9ZLjzx/03.jpg" alt="submerged" />
+                <img src="https://i.ibb.co/7VPJpnv/01.jpg" alt="look-out" />
+                <img src="https://i.ibb.co/5vT6Jm6/02.jpg" alt="One World Trade" />
+                <img src="https://i.ibb.co/fXGcnLc/04.jpg alt="orange tree" />
+                <img src="https://i.ibb.co/h9ZLjzx/03.jpg" alt="submerged" />
+
+              </div>
+
+
+            </div>
+
+  </div>
+  <div class="row" style="margin:1% 0 0 0;">
+    <div class="col-md-2">
+
+    </div>
+    <div class="col-md-8">
+
+    </div>
+    <div class="col-md-2">
+      <!-- <h6>Last added({{last_sold_product.created}})</h6>
+
+      <hr>
+
+
+        <img src="{% if last_sold_product.image1 %}{{ last_sold_product.image1.url }}{% else %}{% static "images/no_image.png" %}{% endif %}" style="width:100%; height:300px; margin-top: 5px;" class="hover-shadow cursor" >
+        <a href="{{ last_sold_product.get_absolute_url }}"> <h6 style="margin:1% 0 0 0;">{{last_sold_product.name}} ({{last_sold_product.store}})</h6></a> -->
+
+    </div>
+
+  </div>
+<div class="row" style="margin:2% 0 0 0;">
+  <div class="col-md-2">
+
+  </div>
+  <div class="col-md-8">
+
+
+    <!-- <img src="{% static "images/gamer30.png" %}"    width="100%" height="400px" class="hover-shadow cursor"> -->
+
+
+  </div>
+  <div class="col-md-2">
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
+{%endblock%}

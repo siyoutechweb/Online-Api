@@ -1,0 +1,130 @@
+{% extends "main.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{%block content%}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+  </head>
+
+  <body>
+<div class="container">
+
+
+<div class="form-group">
+
+
+<form  action="" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+
+  <div class="row">
+  <div class="col-4">
+    {{ form.category|as_crispy_field }}
+  </div>
+  <div class="col-4">
+    {{ form.brand|as_crispy_field }}
+  </div>
+  <div class="col-4">
+    <input name="store" required id="id_store" value="{{request.user.profile.store.id}}" hidden>
+  </div>
+</div>
+
+<div class="row">
+<div class="col-4">
+  {{ form.name|as_crispy_field }}
+</div>
+<div class="col-4">
+  {{ form.slug|as_crispy_field }}
+</div>
+<div class="col-4">
+  {{ form.barcode|as_crispy_field }}
+</div>
+</div>
+
+<div class="row">
+<div class="col-4">
+  {{ form.image1 }}
+</div>
+<div class="col-4">
+  {{ form.image2 }}
+</div>
+<div class="col-4">
+  {{ form.image3}}
+</div>
+</div>
+
+<div class="row">
+<div class="col-6">
+  {{ form.short_description|as_crispy_field }}
+</div>
+<div class="col-6">
+  {{ form.description|as_crispy_field }}
+</div>
+</div>
+
+<div class="row">
+<div class="col-4">
+  {{ form.price|as_crispy_field }}
+</div>
+<div class="col-4">
+  {{ form.discount_amount|as_crispy_field }}
+</div>
+<div class="col-4">
+  {{ form.tax|as_crispy_field }}
+</div>
+</div>
+
+<div class="row">
+<div class="col-4">
+  {{ form.log_x|as_crispy_field }}
+</div>
+<div class="col-4">
+  {{ form.log_y|as_crispy_field }}
+</div>
+<div class="col-4">
+  {{ form.log_z|as_crispy_field }}
+</div>
+</div>
+
+<div class="row">
+<div class="col-4">
+  {{ form.tag|as_crispy_field }}
+</div>
+<div class="col-4">
+  {{ form.like_count|as_crispy_field }}
+</div>
+<div class="col-4">
+  {{ form.raiting|as_crispy_field }}
+</div>
+</div>
+
+<div class="row">
+<div class="col-4">
+  {{ form.qty|as_crispy_field }}
+</div>
+<div class="col-4">
+  {{ form.warn_qty|as_crispy_field }}
+</div>
+<div class="col-2">
+  {{ form.available|as_crispy_field }}
+</div>
+<div class="col-2">
+  {{ form.sold_count|as_crispy_field }}
+</div>
+</div>
+</div>
+
+
+<input type="submit" name="Create" class="btn btn-success" value="Save">
+</form>
+</div>
+</div>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+  </body>
+</html>
+{%endblock%}
